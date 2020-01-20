@@ -36,9 +36,8 @@ Overall, the quantified age gap predicted was **81%** ( $ female / $ male ).
 #### Industry vs. Wages:
 ![alt text](/images/job_wage.png "")
 ![alt text](/images/job_wage_sex.png "")
-#### Education vs. Wages:
-| &emsp; **(1)** = No HS or HS Equivalent &emsp; | &emsp; **(2)** = Some College or Associates &emsp; | &emsp; **(3)** = Bachelor’s Degree &emsp; |
-
+#### Education vs. Wages: <br/>
+| &emsp; **(1)** = No HS or HS Equivalent &emsp; | &emsp; **(2)** = Some College or Associates &emsp; | &emsp; **(3)** = Bachelor’s Degree &emsp; | <br/>
 | &emsp; **(4)** = Master’s Degree &emsp; | &emsp; **(5)** = Doctorate / Other Higher &emsp; |
 ![alt text](/images/edu_wage_sex.png "")
 #### Region vs. Wages:
