@@ -30,21 +30,23 @@ Overall, the quantified age gap predicted was **81%** ( $ female / $ male ).
 ![alt text](/images/age_wage.png "Age vs. Wage")
 #### Age vs. Wages (Binned):
 
-| &emsp; **(1)** = 18-25 &emsp; | &emsp; **(2)** = 26-35 &emsp; | &emsp; **(3)** = 36-45 or 66-70 &emsp; | &emsp; **(4)** = 46-65 &emsp; |
+ &emsp; **(1)** = 18-25 &emsp; | &emsp; **(2)** = 26-35 &emsp; | &emsp; **(3)** = 36-45 or 66-70 &emsp; | &emsp; **(4)** = 46-65 &emsp; 
 
 ![alt text](/images/age_wage_sex.png "Age vs. Wage")
 #### Industry vs. Wages:
 ![alt text](/images/job_wage.png "")
 ![alt text](/images/job_wage_sex.png "")
 #### Education vs. Wages: <br/>
-| &emsp; **(1)** = No HS or HS Equivalent &emsp; | &emsp; **(2)** = Some College or Associates &emsp; | &emsp; **(3)** = Bachelor’s Degree &emsp; | <br/>
-| &emsp; **(4)** = Master’s Degree &emsp; | &emsp; **(5)** = Doctorate / Other Higher &emsp; |
+ &emsp; **(1)** = No HS or HS Equivalent &emsp; | &emsp; **(2)** = Some College or Associates &emsp; | &emsp; **(3)** = Bachelor’s Degree &emsp;  <br/>
+ &emsp; **(4)** = Master’s Degree &emsp; | &emsp; **(5)** = Doctorate / Other Higher &emsp; |
 ![alt text](/images/edu_wage_sex.png "")
 #### Region vs. Wages:
-| &emsp; **(1)** = Northeast and Outlying Regions &emsp; | &emsp; **(2)** = Midwest &emsp; | &emsp; **(3)** = South &emsp; | &emsp; **(4)** = West &emsp; |
+ &emsp; **(1)** = Northeast and Outlying Regions &emsp; | &emsp; **(2)** = Midwest &emsp; | &emsp; **(3)** = South &emsp; | &emsp; **(4)** = West &emsp;
 ![alt text](/images/region_wage.png "")
 ![alt text](/images/region_wage_sex.png "")
-#### Race vs. Wages:
+### Race vs. Wages:
+ &emsp; **(ASN)** = Asian; | &emsp; **(WHT)** = White &emsp; | &emsp; **(BLK)** = Black / African American &emsp; <br/>
+ &emsp; **(NTV)** = Native Americans or Alaskans &emsp;| &emsp; **(MIX)** = > One Race &emsp;
 ![alt text](/images/race_wage.png "")
 ![alt text](/images/race_wage_sex.png "")
 ## Sections of Notebook:
