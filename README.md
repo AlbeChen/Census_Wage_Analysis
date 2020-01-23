@@ -7,7 +7,7 @@ The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets 
 
 The goals of this study is to **(1)** output a single score that most accurately represents the wage gap between genders while accounting for a person's age, education, industry, region, and race, **(2)** create a model to predict a person's wage given the same parameters while also being able to visualize it given user input, **(3)** manage large datasets efficiently create workflows and custom functions to accommodate.
 
-Overall, the quantified age gap predicted was **81%** ( $ female / $ male ).
+Overall, the quantified age gap was **81%** ( $ female / $ male ). It's observed across all industries, age ranges, races, education level, and regions, that woman made less than men on average. However, occupational industry and education level were the driving factors for wage growth and showed greater importance when determining wage. Therefore, while there is a gender wage gap, the difference is more prominent for those working in lucrative industries or for those who could pursue higher education. 
 
 ## Graphical Summary:
 #### Year over Year $ Female / $ Male Wage:
