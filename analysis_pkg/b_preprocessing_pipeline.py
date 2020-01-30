@@ -16,6 +16,7 @@ def outlier_wage(df):
     #wage_upper = np.percentile(df.WAGP, 75) + wage_iqr * 3
     df = df.loc[df.WAGP >= 12500].copy()
     df = df.loc[df.WAGP <= 400000].copy()
+    df['WAGP'] = np.log(df['WAGP'])
     return df
 
 

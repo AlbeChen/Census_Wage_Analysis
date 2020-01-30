@@ -1,7 +1,7 @@
 import pandas as pd
 
 from .a_parse_yearly_df import parse_single
-from .c_df_transform import df_transform_for_scoring
+from .d_df_transform import df_transform_for_scoring
 
 
 def score_ratio(grouped_df, var, base_cat):
