@@ -1,3 +1,24 @@
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+
+
+def full_time_detect(df):
+    df = df.loc[df.WKW < 4].copy()
+    df = df.loc[df.WKHP >= 35].copy()
+    df = df.loc[df.AGEP >= 18].copy()
+    df = df.loc[df.AGEP <= 70].copy()
+    return df
+
+
+def outlier_wage(df):
+    #wage_iqr = np.percentile(df.WAGP, 75) - np.percentile(df.WAGP, 25)
+    #wage_upper = np.percentile(df.WAGP, 75) + wage_iqr * 3
+    df = df.loc[df.WAGP >= 12500].copy()
+    df = df.loc[df.WAGP <= 400000].copy()
+    return df
+
+
 def mapping_features(df):
     # Sex
     df['SEX'] = df['SEX'].map(lambda y: 'Male' if y == 1
@@ -43,4 +64,48 @@ def mapping_features(df):
                                  else 'WHT/MIX' if y <= 9  # mixed
                                  else 'HSP/NTV' if y == 10  # hispanic
                                  else 'na')
+    return df
+
+
+def remove_col(df):
+    remove_cols = ['SCHL', 'WKHP', 'WKW', 'HISP',
+                   'OCCP', 'POWSP', 'RAC1P', 'AGEP', 'ST']
+    df = df.drop(remove_cols, axis=1)
+    return df
+
+
+def OHE_cat(df):
+    OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
+    cat_col = [i for i in df.columns.tolist() if i not in ['WAGP']]
+    OH_cols_train = pd.DataFrame(OH_encoder.fit_transform(df[cat_col]))
+    
+    OHE_col = list(OH_encoder.get_feature_names(cat_col))
+    OHE_col.insert(0, 'WAGP')
+    
+    OH_cols_train.index = df.index
+    df = pd.concat([df, OH_cols_train], axis=1)
+    df.drop(cat_col, axis=1, inplace=True)
+    
+    df.columns = OHE_col
+    return df
+
+
+def preprocess_modeling(df):
+    df = (df
+          .pipe(full_time_detect)
+          .pipe(outlier_wage)
+          .pipe(mapping_features)
+          .pipe(remove_col)
+          .pipe(OHE_cat)
+          )
+    return df
+
+
+def preprocess_catagories(df):
+    df = (df
+          .pipe(full_time_detect)
+          .pipe(outlier_wage)
+          .pipe(mapping_features)
+          .pipe(remove_col)
+          )
     return df
