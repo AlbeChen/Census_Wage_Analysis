@@ -75,6 +75,21 @@ def remove_col(df):
     return df
 
 
+def OHE_no_WAGP(df):
+    OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
+    cat_col = [i for i in df.columns.tolist() if i not in ['WAGP']]
+    OH_cols_train = pd.DataFrame(OH_encoder.fit_transform(df[cat_col]))
+    
+    OHE_col = list(OH_encoder.get_feature_names(cat_col))
+    
+    OH_cols_train.index = df.index
+    df = pd.concat([df, OH_cols_train], axis=1)
+    df.drop(cat_col, axis=1, inplace=True)
+    
+    df.columns = OHE_col
+    return df
+
+
 def OHE_cat(df):
     OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
     cat_col = [i for i in df.columns.tolist() if i not in ['WAGP']]
