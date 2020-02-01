@@ -22,7 +22,7 @@ def create_df_all_variations(cat_df, model_fit):
                         job_keep = race_keep.copy()
                         job_keep.append(job)
                         grp_list.append(job_keep)
-    grp_list = pd.DataFrame(grp_list, columns =['SEX', 'EDU', 'JOB', 'RACE', 'AGEB'])
+    grp_list = pd.DataFrame(grp_list, columns =['SEX', 'EDU', 'AGEB', 'RACE', 'JOB'])
     cat_df_cols = cat_df.drop(['WAGP'], axis=1)
     grp_list = grp_list[cat_df_cols.columns]
     all_var_model = OHE_no_WAGP(grp_list)
@@ -34,7 +34,6 @@ def create_df_all_variations(cat_df, model_fit):
     predicted['WAG'] = np.exp(predicted['WAG'])
     predicted = predicted.sort_values(by=['SEX', 'EDU', 'JOB', 'RACE', 'AGEB'])
     predicted = predicted.reset_index(drop=True)
-
     return predicted
 
 

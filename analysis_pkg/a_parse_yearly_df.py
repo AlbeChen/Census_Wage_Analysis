@@ -38,3 +38,23 @@ def parse_skip_year(start_year, end_year):
                             for f in glob.glob(path + "/*.csv")], ignore_index=True)
         PUS_start = PUS_start.append(PUS_split)
     return PUS_start
+
+
+def shorten_raw_df(year):
+    path = ('data/%s' %year)
+    useful_cols = ['WAGP', 'SEX', 'AGEP', 'RAC1P',
+        'SCHL', 'WKW', 'WKHP', 'OCCP', 'POWSP', 'ST', 'HISP']
+    raw_df = pd.concat([pd.read_csv(f, usecols = useful_cols) \
+        for f in glob.glob(path + "/*.csv", recursive = True)], ignore_index=True)
+    print (raw_df.shape)
+    raw_df.to_csv((path + "/shorten_pus.csv"),index=False)
+    return raw_df
+
+
+def convert_rows_num(raw_df):
+    for x in ['WAGP', 'WKHP']:
+        raw_df[x] = raw_df[x].map(lambda y: 0 if y == "0000000" 
+                                        else 0 if y == ' '
+                                        else y)
+        raw_df[x] = pd.to_numeric(raw_df[x])
+    return raw_df
