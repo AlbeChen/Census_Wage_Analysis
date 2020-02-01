@@ -17,12 +17,12 @@ def rfr_fit(modeling_df):
     x_train = x_train.sample(n=1000000, random_state=1)
     y_train = y_train.sample(n=1000000, random_state=1)
 
-    RFR = RandomForestRegressor(random_state=1, verbose = True, n_jobs=4)
-    rfr_param_grid = {'n_estimators': [50, 100],
-                      'min_samples_split': [2, 5, 10],
-                      'min_samples_leaf': [5, 10, 20]}
-    gsRFR = GridSearchCV(RFR, param_grid=rfr_param_grid, verbose=1,
-                         scoring="neg_mean_absolute_error", n_jobs=4)
+    RFR = RandomForestRegressor(random_state=1, verbose=1, n_jobs=4)
+    rfr_param_grid = {'n_estimators': [75, 100, 125],
+                      'min_samples_split': [3, 5, 7],
+                      'min_samples_leaf': [15, 20, 25]}
+    gsRFR = GridSearchCV(RFR, param_grid=rfr_param_grid,
+                         scoring="neg_mean_absolute_error")
     gsRFR.fit(x_valid, y_valid)
     print(gsRFR.best_score_)
     RFR_best = gsRFR.best_estimator_

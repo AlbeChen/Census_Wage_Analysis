@@ -12,7 +12,6 @@ def score_ratio(grouped_df, var):
     cat_list = list(grouped_df[var].unique())
         
     for n in cat_list:
-
         # GENDER ANALYSIS PER CATEGORY IN EACH VARIABLE
         m_ncat = grouped_df[(grouped_df[var] == n) & (grouped_df['SEX'] == 'Male')].reset_index()
         f_ncat = grouped_df[(grouped_df[var] == n) & (grouped_df['SEX'] == 'Female')].reset_index()
