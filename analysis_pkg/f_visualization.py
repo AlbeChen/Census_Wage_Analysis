@@ -11,4 +11,4 @@ def plot_heatmap_basecat(grp_full, var):
     heatmap_group = heatmap_group.sort_values(by=['sum'], ascending=False)
     heatmap_group = heatmap_group.drop(columns=['sum'])
     heatmap_group = heatmap_group[list(heatmap_group.index)] #[::-1]
-    ax = sns.heatmap(heatmap_group, annot=True, linewidths=.5, cbar=False)
+    sns.heatmap(heatmap_group, annot=True, linewidths=.5, cbar=False)

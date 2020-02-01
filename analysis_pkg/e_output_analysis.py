@@ -12,40 +12,79 @@ def score_ratio(grouped_df, var):
     cat_list = list(grouped_df[var].unique())
         
     for n in cat_list:
-        # GENDER ANALYSIS PER CATEGORY IN EACH VARIABLE
-        m_ncat = grouped_df[(grouped_df[var] == n) & (grouped_df['SEX'] == 'Male')].reset_index()
-        f_ncat = grouped_df[(grouped_df[var] == n) & (grouped_df['SEX'] == 'Female')].reset_index()
+        if var == 'SEX' and n == 'Female':
+            m_ncat = grouped_df[(grouped_df['SEX'] == 'Male')].reset_index()
+            f_ncat = grouped_df[(grouped_df['SEX'] == 'Female')].reset_index()
 
-        sex_df = pd.DataFrame({'m_wage': m_ncat.WAG, 'm_ct': m_ncat.WAGP_count,
-                               'f_wage': f_ncat.WAG, 'f_ct': f_ncat.WAGP_count})
+            sex_df = pd.DataFrame({'m_wage': m_ncat.WAG, 'm_ct': m_ncat.WAGP_count,
+                                'f_wage': f_ncat.WAG, 'f_ct': f_ncat.WAGP_count})
 
-        m_ct = sex_df['m_ct'].sum()
-        f_ct = sex_df['f_ct'].sum()
-        t_ct = m_ct + f_ct
+            m_ct = sex_df['m_ct'].sum()
+            f_ct = sex_df['f_ct'].sum()
+            t_ct = m_ct + f_ct
 
-        sex_df['m_wage_f'] = sex_df['m_wage'] * sex_df['f_ct'] / f_ct
-        sex_df['m_wage_m'] = sex_df['m_wage'] * sex_df['m_ct'] / m_ct
-        sex_df['f_wage_m'] = sex_df['f_wage'] * sex_df['m_ct'] / m_ct
-        sex_df['f_wage_f'] = sex_df['f_wage'] * sex_df['f_ct'] / f_ct
+            sex_df['m_wage_f'] = sex_df['m_wage'] * sex_df['f_ct'] / f_ct
+            sex_df['m_wage_m'] = sex_df['m_wage'] * sex_df['m_ct'] / m_ct
+            sex_df['f_wage_m'] = sex_df['f_wage'] * sex_df['m_ct'] / m_ct
+            sex_df['f_wage_f'] = sex_df['f_wage'] * sex_df['f_ct'] / f_ct
 
-        m_wage_f = round(sex_df['m_wage_f'].sum(), 3)
-        m_wage_m = round(sex_df['m_wage_m'].sum(), 3)
-        f_wage_m = round(sex_df['f_wage_m'].sum(), 3)
-        f_wage_f = round(sex_df['f_wage_f'].sum(), 3)
+            m_wage_f = round(sex_df['m_wage_f'].sum(), 3)
+            m_wage_m = round(sex_df['m_wage_m'].sum(), 3)
+            f_wage_m = round(sex_df['f_wage_m'].sum(), 3)
+            f_wage_f = round(sex_df['f_wage_f'].sum(), 3)
+            
+            f_m_ratio_f = round(f_wage_f / m_wage_f, 3)
+            f_m_ratio_m = round(f_wage_m / m_wage_m, 3)
+
+            m_summary = [var, 'SEX', m_wage_m, m_wage_f, 'Male', m_ct]
+            f_summary = [var, 'SEX', f_wage_m, f_wage_f, 'Female', f_ct]
+            sex_summary = [var, 'SEX', t_ct,
+                m_wage_f, m_wage_m, m_ct,
+                f_wage_m, f_wage_f, f_ct,
+                f_m_ratio_f, f_m_ratio_m]
+
+            sex_sep.append(m_summary)
+            sex_sep.append(f_summary)
+            sex_full.append(sex_summary)
         
-        f_m_ratio_f = round(f_wage_f / m_wage_f, 3)
-        f_m_ratio_m = round(f_wage_m / m_wage_m, 3)
+        elif var == 'SEX' and n == 'Male':
+            pass
 
-        m_summary = [var, n, m_wage_m, m_wage_f, 'Male', m_ct]
-        f_summary = [var, n, f_wage_m, f_wage_f, 'Female', f_ct]
-        sex_summary = [var, n, t_ct,
-            m_wage_f, m_wage_m, m_ct,
-            f_wage_m, f_wage_f, f_ct,
-            f_m_ratio_f, f_m_ratio_m]
+        # GENDER ANALYSIS PER CATEGORY IN EACH VARIABLE
+        else:
+            m_ncat = grouped_df[(grouped_df[var] == n) & (grouped_df['SEX'] == 'Male')].reset_index()
+            f_ncat = grouped_df[(grouped_df[var] == n) & (grouped_df['SEX'] == 'Female')].reset_index()
 
-        sex_sep.append(m_summary)
-        sex_sep.append(f_summary)
-        sex_full.append(sex_summary)
+            sex_df = pd.DataFrame({'m_wage': m_ncat.WAG, 'm_ct': m_ncat.WAGP_count,
+                                'f_wage': f_ncat.WAG, 'f_ct': f_ncat.WAGP_count})
+
+            m_ct = sex_df['m_ct'].sum()
+            f_ct = sex_df['f_ct'].sum()
+            t_ct = m_ct + f_ct
+
+            sex_df['m_wage_f'] = sex_df['m_wage'] * sex_df['f_ct'] / f_ct
+            sex_df['m_wage_m'] = sex_df['m_wage'] * sex_df['m_ct'] / m_ct
+            sex_df['f_wage_m'] = sex_df['f_wage'] * sex_df['m_ct'] / m_ct
+            sex_df['f_wage_f'] = sex_df['f_wage'] * sex_df['f_ct'] / f_ct
+
+            m_wage_f = round(sex_df['m_wage_f'].sum(), 3)
+            m_wage_m = round(sex_df['m_wage_m'].sum(), 3)
+            f_wage_m = round(sex_df['f_wage_m'].sum(), 3)
+            f_wage_f = round(sex_df['f_wage_f'].sum(), 3)
+            
+            f_m_ratio_f = round(f_wage_f / m_wage_f, 3)
+            f_m_ratio_m = round(f_wage_m / m_wage_m, 3)
+
+            m_summary = [var, n, m_wage_m, m_wage_f, 'Male', m_ct]
+            f_summary = [var, n, f_wage_m, f_wage_f, 'Female', f_ct]
+            sex_summary = [var, n, t_ct,
+                m_wage_f, m_wage_m, m_ct,
+                f_wage_m, f_wage_f, f_ct,
+                f_m_ratio_f, f_m_ratio_m]
+
+            sex_sep.append(m_summary)
+            sex_sep.append(f_summary)
+            sex_full.append(sex_summary)
 
         # CATEGORY ANALYSIS PER EACH VARIABLE
         for base_cat in cat_list:
@@ -62,7 +101,7 @@ def score_ratio(grouped_df, var):
             cat_df['b_wage_b'] = cat_df['b_wage'] * cat_df['b_ct'] / b_ct
 
             n_wage_b = round(cat_df['n_wage_b'].sum(), 3)
-            b_wage_b = round(cat_df['b_wage_b'].sum(), 3)
+            b_wage_b = round(cat_df['b_wage_b'].sum(), 3)   
             n_ratio_b = round(n_wage_b / b_wage_b, 3)
 
             cat_summary = [var, n, base_cat, n_wage_b, n_ratio_b, n_ct, b_ct]
