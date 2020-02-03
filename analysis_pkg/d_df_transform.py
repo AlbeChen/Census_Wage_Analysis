@@ -3,6 +3,7 @@ import numpy as np
 
 from .b_preprocessing_pipeline import preprocess_catagories, preprocess_modeling, OHE_no_WAGP
 from .a_parse_yearly_df import parse_single
+from .c_model_fitting import rfr_fit
 
 def create_df_all_variations(cat_df, model_fit):
     grp_list = []
@@ -55,9 +56,11 @@ def group_by_category(cat_df):
     return grouped
 
 
-def df_transform_for_scoring(single_year, mod_fit):
-    raw_df = parse_single(single_year)
+def transform_for_scoring(raw_df):
     cat_df = preprocess_catagories(raw_df)
+    mod_df = preprocess_modeling(raw_df)
+    mod_fit = rfr_fit(mod_df)
+
     var_df = create_df_all_variations(cat_df, mod_fit)
     cat_grp = group_by_category(cat_df)
     cat_grp = cat_grp.drop(['SEX', 'EDU', 'JOB', 'RACE', 'AGEB'], axis=1)

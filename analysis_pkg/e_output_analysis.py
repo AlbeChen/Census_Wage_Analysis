@@ -1,7 +1,8 @@
 import pandas as pd
+import time
 
-from .a_parse_yearly_df import parse_single
-from .d_df_transform import df_transform_for_scoring
+from .a_parse_yearly_df import parse_single, parse_group
+from .d_df_transform import transform_for_scoring
 
 
 def score_ratio(grouped_df, var):
@@ -132,29 +133,40 @@ def multibase_analysis(grouped_df):
     return (sex_sep, sex_full, cat_full)
 
 
-def singleyear_multibase_analysis(single_year, mod_fit):
-    group_df = df_transform_for_scoring(single_year, mod_fit)
+def singleyear_multibase_analysis(single_year):
+    raw_df = parse_single(single_year)
+    group_df = transform_for_scoring(raw_df)
     sex_sep, sex_full, cat_full = multibase_analysis(group_df)
     
     return (sex_sep, sex_full, cat_full)
 
 
-'''
-def multibase_analysis(grouped_df):
-    var_list = ['EDU', 'JOB', 'AGEB', 'RACE']
-    cat_combo = [['SEX', 'Male']]
-    for var in var_list:
-        var_cat = list(grouped_df[var].unique())
-        for cat in var_cat:
-            vat_cat_group = [var, cat]
-            cat_combo.append(vat_cat_group)
+def yearly_multibase_analysis(start_year, end_year):
+    sex_sep = pd.DataFrame()
+    sex_full = pd.DataFrame()
+    cat_full = pd.DataFrame()
+    end_year = end_year + 1
+    year_range = list(range(start_year, end_year))
     
-    sep_full = pd.DataFrame()
-    grp_full = pd.DataFrame()
-    for n in cat_combo:
-        score_cat = score_ratio(grouped_df, n[0], n[1])
-        sep_full = pd.concat([sep_full, score_cat[0]])
-        grp_full = pd.concat([grp_full, score_cat[1]])
+    for year in year_range:
+        start_time = time.time()
+        grouped_analysis = singleyear_multibase_analysis(year)
+        for grouped in grouped_analysis:
+            grouped['Year'] = year
+        sex_sep = pd.concat([sex_sep, grouped_analysis[0]])
+        sex_full = pd.concat([sex_full, grouped_analysis[1]])
+        cat_full = pd.concat([cat_full, grouped_analysis[2]])
+        print('Completed Year:', year, 
+            " (%s min)" % round(((time.time() - start_time)/60), 2))
+            
+    return sex_sep, sex_full, cat_full
+
+
+def multiyear_multibase_analysis(start_year, end_year):
+    start_time = time.time()
+    raw_df = parse_group(start_year, end_year)
+    group_df = transform_for_scoring(raw_df)
+    sex_sep, sex_full, cat_full = multibase_analysis(group_df)
+    print('Completed in: %s min)' % round(((time.time() - start_time)/60), 2))
+    return (sex_sep, sex_full, cat_full)
     
-    return (sep_full, grp_full)
-'''
