@@ -27,7 +27,7 @@ def mapping_features(df):
                               else 'na')
 
     # Age
-    df['AGEB'] = df['AGEP'].map(lambda y: '18-25' if y <= 25
+    df['AGE'] = df['AGEP'].map(lambda y: '18-25' if y <= 25
                                 else '26-35' if y <= 35
                                 else '36-45' if y <= 45
                                 else '46-55' if y <= 55

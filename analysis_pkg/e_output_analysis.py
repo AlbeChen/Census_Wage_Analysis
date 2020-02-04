@@ -1,7 +1,8 @@
 import pandas as pd
+import time
 
-from .a_parse_yearly_df import parse_single
-from .d_df_transform import df_transform_for_scoring
+from .a_parse_yearly_df import parse_single, parse_group
+from .d_df_transform import transform_for_scoring
 
 
 def score_ratio(grouped_df, var):
@@ -30,18 +31,27 @@ def score_ratio(grouped_df, var):
 
             m_wage_f = round(sex_df['m_wage_f'].sum(), 3)
             m_wage_m = round(sex_df['m_wage_m'].sum(), 3)
+            m_wage_avg = round((m_wage_m + m_wage_f)/2, 3)
+            m_wage_dif = round((m_wage_m - m_wage_f), 3)
+
             f_wage_m = round(sex_df['f_wage_m'].sum(), 3)
             f_wage_f = round(sex_df['f_wage_f'].sum(), 3)
+            f_wage_avg = round((f_wage_m + f_wage_f)/2, 3)
+            f_wage_dif = round((f_wage_m - f_wage_f), 3)
             
             f_m_ratio_f = round(f_wage_f / m_wage_f, 3)
             f_m_ratio_m = round(f_wage_m / m_wage_m, 3)
+            f_m_ratio_avg = round((f_m_ratio_f + f_m_ratio_m)/2, 3)
+            f_m_ratio_dif = round((f_m_ratio_f - f_m_ratio_m), 3)
 
-            m_summary = [var, 'SEX', m_wage_m, m_wage_f, 'Male', m_ct]
-            f_summary = [var, 'SEX', f_wage_m, f_wage_f, 'Female', f_ct]
-            sex_summary = [var, 'SEX', t_ct,
-                m_wage_f, m_wage_m, m_ct,
-                f_wage_m, f_wage_f, f_ct,
-                f_m_ratio_f, f_m_ratio_m]
+            m_summary = [var, n, m_wage_m, m_wage_f, 
+                m_wage_avg, m_wage_dif, 'Male', m_ct]
+            f_summary = [var, n, f_wage_m, f_wage_f, 
+                f_wage_avg, f_wage_dif, 'Female', f_ct]
+            sex_summary = [var, n, t_ct,
+                m_wage_f, m_wage_m, m_wage_avg, m_wage_dif, m_ct,
+                f_wage_m, f_wage_f, f_wage_avg, f_wage_dif, f_ct,
+                f_m_ratio_f, f_m_ratio_m, f_m_ratio_avg, f_m_ratio_dif]
 
             sex_sep.append(m_summary)
             sex_sep.append(f_summary)
@@ -69,18 +79,27 @@ def score_ratio(grouped_df, var):
 
             m_wage_f = round(sex_df['m_wage_f'].sum(), 3)
             m_wage_m = round(sex_df['m_wage_m'].sum(), 3)
+            m_wage_avg = round((m_wage_m + m_wage_f)/2, 3)
+            m_wage_dif = round((m_wage_m - m_wage_f), 3)
+
             f_wage_m = round(sex_df['f_wage_m'].sum(), 3)
             f_wage_f = round(sex_df['f_wage_f'].sum(), 3)
+            f_wage_avg = round((f_wage_m + f_wage_f)/2, 3)
+            f_wage_dif = round((f_wage_m - f_wage_f), 3)
             
             f_m_ratio_f = round(f_wage_f / m_wage_f, 3)
             f_m_ratio_m = round(f_wage_m / m_wage_m, 3)
+            f_m_ratio_avg = round((f_m_ratio_f + f_m_ratio_m)/2, 3)
+            f_m_ratio_dif = round((f_m_ratio_f - f_m_ratio_m), 3)
 
-            m_summary = [var, n, m_wage_m, m_wage_f, 'Male', m_ct]
-            f_summary = [var, n, f_wage_m, f_wage_f, 'Female', f_ct]
+            m_summary = [var, n, m_wage_m, m_wage_f, 
+                m_wage_avg, m_wage_dif, 'Male', m_ct]
+            f_summary = [var, n, f_wage_m, f_wage_f, 
+                f_wage_avg, f_wage_dif, 'Female', f_ct]
             sex_summary = [var, n, t_ct,
-                m_wage_f, m_wage_m, m_ct,
-                f_wage_m, f_wage_f, f_ct,
-                f_m_ratio_f, f_m_ratio_m]
+                m_wage_f, m_wage_m, m_wage_avg, m_wage_dif, m_ct,
+                f_wage_m, f_wage_f, f_wage_avg, f_wage_dif, f_ct,
+                f_m_ratio_f, f_m_ratio_m, f_m_ratio_avg, f_m_ratio_dif]
 
             sex_sep.append(m_summary)
             sex_sep.append(f_summary)
@@ -109,17 +128,17 @@ def score_ratio(grouped_df, var):
     
     cat_full = pd.DataFrame(cat_full, columns = ['Variable', 'Category', 'Base_Category', 'Wage_vs_Base', 
                                                  'Ratio_vs_Base', 'n_Count', 'b_Count'])
-    sex_sep = pd.DataFrame(sex_sep, columns = ['Variable', 'Category', 'Wage_m', 
-                                                 'Wage_f', 'Sex', 'Count'])                                                
+    sex_sep = pd.DataFrame(sex_sep, columns = ['Variable', 'Category', 'Wage_m', 'Wage_f',
+                                               'Wage_Avg', 'Wage_Diff', 'Sex', 'Count'])                                                
     sex_full = pd.DataFrame(sex_full, columns = ['Variable', 'Category', 'Total_Count', 
-                                                 'M_Wage_f', 'M_Wage_m', 'M_Count',
-                                                 'F_Wage_m', 'F_Wage_f', 'F_Count',
-                                                 'F_M_Ratio_f', 'F_M_Ratio_m'])
+                                                 'M_Wage_f', 'M_Wage_m', 'M_Wage_Avg', 'M_Wage_Diff', 'M_Count',
+                                                 'F_Wage_m', 'F_Wage_f', 'F_Wage_Avg', 'F_Wage_Diff', 'F_Count',
+                                                 'F_M_Ratio_f', 'F_M_Ratio_m', 'F_M_Ratio_Avg', 'F_M_Ratio_Diff'])
     return (sex_sep, sex_full, cat_full)
 
 
 def multibase_analysis(grouped_df):
-    var_list = ['SEX', 'EDU', 'JOB', 'RACE', 'AGEB']
+    var_list = ['SEX', 'EDU', 'JOB', 'RACE', 'AGE']
     sex_sep = pd.DataFrame()
     sex_full = pd.DataFrame()
     cat_full = pd.DataFrame()
@@ -132,29 +151,41 @@ def multibase_analysis(grouped_df):
     return (sex_sep, sex_full, cat_full)
 
 
-def singleyear_multibase_analysis(single_year, mod_fit):
-    group_df = df_transform_for_scoring(single_year, mod_fit)
+def singleyear_multibase_analysis(single_year):
+    raw_df = parse_single(single_year)
+    group_df = transform_for_scoring(raw_df)
     sex_sep, sex_full, cat_full = multibase_analysis(group_df)
     
-    return (sex_sep, sex_full, cat_full)
+    return (sex_sep, sex_full, cat_full, group_df)
 
 
-'''
-def multibase_analysis(grouped_df):
-    var_list = ['EDU', 'JOB', 'AGEB', 'RACE']
-    cat_combo = [['SEX', 'Male']]
-    for var in var_list:
-        var_cat = list(grouped_df[var].unique())
-        for cat in var_cat:
-            vat_cat_group = [var, cat]
-            cat_combo.append(vat_cat_group)
+def yearly_multibase_analysis(start_year, end_year):
+    sex_sep = pd.DataFrame()
+    sex_full = pd.DataFrame()
+    cat_full = pd.DataFrame()
+    end_year = end_year + 1
+    year_range = list(range(start_year, end_year))
     
-    sep_full = pd.DataFrame()
-    grp_full = pd.DataFrame()
-    for n in cat_combo:
-        score_cat = score_ratio(grouped_df, n[0], n[1])
-        sep_full = pd.concat([sep_full, score_cat[0]])
-        grp_full = pd.concat([grp_full, score_cat[1]])
+    for year in year_range:
+        start_time = time.time()
+        grouped_analysis = singleyear_multibase_analysis(year)
+        for grouped in grouped_analysis:
+            grouped['Year'] = year
+        sex_sep = pd.concat([sex_sep, grouped_analysis[0]])
+        sex_full = pd.concat([sex_full, grouped_analysis[1]])
+        cat_full = pd.concat([cat_full, grouped_analysis[2]])
+        group_df = pd.concat([group_df, grouped_analysis[3]])
+        print('Completed Year:', year, 
+            " (%s min)" % round(((time.time() - start_time)/60), 2))
+            
+    return (sex_sep, sex_full, cat_full, group_df)
+
+
+def multiyear_multibase_analysis(start_year, end_year):
+    start_time = time.time()
+    raw_df = parse_group(start_year, end_year)
+    group_df = transform_for_scoring(raw_df)
+    sex_sep, sex_full, cat_full = multibase_analysis(group_df)
+    print('Completed in: %s min)' % round(((time.time() - start_time)/60), 2))
+    return (sex_sep, sex_full, cat_full, group_df)
     
-    return (sep_full, grp_full)
-'''
