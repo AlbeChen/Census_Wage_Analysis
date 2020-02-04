@@ -27,31 +27,14 @@ def rfr_fit(modeling_df):
     rfr_param_grid = {'n_estimators': [75, 100, 125],
                       'min_samples_split': [3, 5, 7],
                       'min_samples_leaf': [15, 20, 25]}
-    gsRFR = GridSearchCV(RFR, param_grid=rfr_param_grid, verbose=1, n_jobs=4,
+    gsRFR = GridSearchCV(RFR, param_grid=rfr_param_grid, verbose=0, n_jobs=4,
                          scoring="neg_mean_absolute_error")
     gsRFR.fit(x_valid, y_valid)
     #print(gsRFR.best_score_)
     RFR_best = gsRFR.best_estimator_
 
     RFR_best.fit(x_train, y_train)
-    test_prediction = RFR_best.predict(x_test)
+    #test_prediction = RFR_best.predict(x_test)
     #print(mean_absolute_error(y_test, test_prediction))
 
     return RFR_best
-
-'''
-def fit_multple_years(start_year, end_year):
-    raw_df = parse_group(start_year,end_year)
-    mod_df = preprocess_modeling(raw_df)
-    mod_fit = rfr_fit(mod_df)
-
-    return mod_fit
-
-
-def fit_single_years(year):
-    raw_df = parse_single(year)
-    mod_df = preprocess_modeling(raw_df)
-    mod_fit = rfr_fit(mod_df)
-
-    return mod_fit
-'''

@@ -13,7 +13,7 @@ def create_df_all_variations(cat_df, model_fit):
         for edu in list(cat_df.EDU.unique()):
             edu_keep = sex_keep.copy()
             edu_keep.append(edu)
-            for age in list(cat_df.AGEB.unique()):
+            for age in list(cat_df.AGE.unique()):
                 age_keep = edu_keep.copy()
                 age_keep.append(age)
                 for race in list(cat_df.RACE.unique()):
@@ -23,7 +23,7 @@ def create_df_all_variations(cat_df, model_fit):
                         job_keep = race_keep.copy()
                         job_keep.append(job)
                         grp_list.append(job_keep)
-    grp_list = pd.DataFrame(grp_list, columns =['SEX', 'EDU', 'AGEB', 'RACE', 'JOB'])
+    grp_list = pd.DataFrame(grp_list, columns =['SEX', 'EDU', 'AGE', 'RACE', 'JOB'])
     cat_df_cols = cat_df.drop(['WAGP'], axis=1)
     grp_list = grp_list[cat_df_cols.columns]
     all_var_model = OHE_no_WAGP(grp_list)
@@ -33,13 +33,13 @@ def create_df_all_variations(cat_df, model_fit):
     predicted = pd.concat([predicted, grp_list], axis=1, sort=False)
 
     predicted['WAG'] = np.exp(predicted['WAG'])
-    predicted = predicted.sort_values(by=['SEX', 'EDU', 'JOB', 'RACE', 'AGEB'])
+    predicted = predicted.sort_values(by=['SEX', 'EDU', 'JOB', 'RACE', 'AGE'])
     predicted = predicted.reset_index(drop=True)
     return predicted
 
 
 def group_by_category(cat_df):
-    grouped = cat_df.groupby(['SEX', 'EDU', 'JOB', 'RACE', 'AGEB']) \
+    grouped = cat_df.groupby(['SEX', 'EDU', 'JOB', 'RACE', 'AGE']) \
         .agg({'WAGP': ['count', 'mean']})
     for level in range(-3,1):
         grouped = grouped.unstack(level=level, fill_value=0).stack()
@@ -50,7 +50,7 @@ def group_by_category(cat_df):
     grouped[wage_to_numeric] = grouped[wage_to_numeric].apply(pd.to_numeric)
 
     grouped['WAGP_mean'] = np.exp(grouped['WAGP_mean'])
-    grouped = grouped.sort_values(by=['SEX', 'EDU', 'JOB', 'RACE', 'AGEB'])
+    grouped = grouped.sort_values(by=['SEX', 'EDU', 'JOB', 'RACE', 'AGE'])
     grouped = grouped.reset_index(drop=True)
 
     return grouped
@@ -63,7 +63,7 @@ def transform_for_scoring(raw_df):
 
     var_df = create_df_all_variations(cat_df, mod_fit)
     cat_grp = group_by_category(cat_df)
-    cat_grp = cat_grp.drop(['SEX', 'EDU', 'JOB', 'RACE', 'AGEB'], axis=1)
+    cat_grp = cat_grp.drop(['SEX', 'EDU', 'JOB', 'RACE', 'AGE'], axis=1)
     grouped_df = pd.concat([var_df, cat_grp], axis=1, sort=False)
    
     return grouped_df
