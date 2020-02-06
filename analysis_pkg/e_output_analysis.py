@@ -163,6 +163,7 @@ def yearly_multibase_analysis(start_year, end_year):
     sex_sep = pd.DataFrame()
     sex_full = pd.DataFrame()
     cat_full = pd.DataFrame()
+    group_df = pd.DataFrame()
     end_year = end_year + 1
     year_range = list(range(start_year, end_year))
     

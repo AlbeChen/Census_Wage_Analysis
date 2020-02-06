@@ -1,3 +1,3 @@
 
 *.csv
-.ipynb_checkpoints/ACS_Wage_Analysis-checkpoint.ipynb
+.ipynb_checkpoints/*
