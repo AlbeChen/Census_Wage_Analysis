@@ -43,12 +43,12 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
     ratio_yearly = yearly_sex_full.loc[(yearly_sex_full.Variable == var)]
     sns.lineplot(x='Year', y='F_M_Ratio_Avg', hue='Category', data=ratio_yearly, ax=ax[1])
     ax[1].get_legend().remove()
-    ax[1].title.set_text('Wage for each %s over 2008 - 2018' % var)
+    ax[1].title.set_text('Wage F / Wage M for each %s group (2008-2018)' % var)
 
     ratio_yearly = yearly_sex_full.loc[(yearly_sex_full.Variable == var)]
     sns.lineplot(x='Year', y='F_Pct_Ct', hue='Category', data=ratio_yearly, ax=ax[2])
     ax[2].legend(bbox_to_anchor=(1, 1))
-    ax[2].title.set_text('Wage for each %s over 2008 - 2018' % var)
+    ax[2].title.set_text('Percent Woman for each %s group (2008-2018)' % var)
 
 
 def plot_ratio_ordered(sex_full):
