@@ -1,19 +1,5 @@
-<<<<<<< Updated upstream
 .vscode/*
 .ipynb_checkpoints/*
-=======
->>>>>>> Stashed changes
-data_raw/2008/ss08pus.csv
-data_raw/2009/ss09pus.csv
-data_raw/2010/ss10pus.csv
-data_raw/2011/ss11pus.csv
-data_raw/2012/ss12pus.csv
-data_raw/2013/ss13pus.csv
-data_raw/2014/ss14pus.csv
-data_raw/2015/ss15pus.csv
-data_raw/2016/ss16pus.csv
-data_raw/2017/ss17pus.csv
-data_raw/2018/ss18pus.csv
 data_raw/2008/ss08pus.csv
 data_raw/2009/ss09pus.csv
 data_raw/2010/ss10pus.csv

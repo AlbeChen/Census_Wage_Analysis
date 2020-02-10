@@ -23,6 +23,8 @@ def score_ratio(grouped_df, var):
             m_ct = sex_df['m_ct'].sum()
             f_ct = sex_df['f_ct'].sum()
             t_ct = m_ct + f_ct
+            m_per_ct = m_ct / t_ct
+            f_per_ct = f_ct / t_ct
 
             sex_df['m_wage_f'] = sex_df['m_wage'] * sex_df['f_ct'] / f_ct
             sex_df['m_wage_m'] = sex_df['m_wage'] * sex_df['m_ct'] / m_ct
@@ -49,8 +51,8 @@ def score_ratio(grouped_df, var):
             f_summary = [var, n, f_wage_m, f_wage_f, 
                 f_wage_avg, f_wage_dif, 'Female', f_ct]
             sex_summary = [var, n, t_ct,
-                m_wage_f, m_wage_m, m_wage_avg, m_wage_dif, m_ct,
-                f_wage_m, f_wage_f, f_wage_avg, f_wage_dif, f_ct,
+                m_wage_f, m_wage_m, m_wage_avg, m_wage_dif, m_ct, m_per_ct,
+                f_wage_m, f_wage_f, f_wage_avg, f_wage_dif, f_ct, f_per_ct,
                 f_m_ratio_f, f_m_ratio_m, f_m_ratio_avg, f_m_ratio_dif]
 
             sex_sep.append(m_summary)
@@ -71,6 +73,8 @@ def score_ratio(grouped_df, var):
             m_ct = sex_df['m_ct'].sum()
             f_ct = sex_df['f_ct'].sum()
             t_ct = m_ct + f_ct
+            m_per_ct = m_ct / t_ct
+            f_per_ct = f_ct / t_ct
 
             sex_df['m_wage_f'] = sex_df['m_wage'] * sex_df['f_ct'] / f_ct
             sex_df['m_wage_m'] = sex_df['m_wage'] * sex_df['m_ct'] / m_ct
@@ -97,8 +101,8 @@ def score_ratio(grouped_df, var):
             f_summary = [var, n, f_wage_m, f_wage_f, 
                 f_wage_avg, f_wage_dif, 'Female', f_ct]
             sex_summary = [var, n, t_ct,
-                m_wage_f, m_wage_m, m_wage_avg, m_wage_dif, m_ct,
-                f_wage_m, f_wage_f, f_wage_avg, f_wage_dif, f_ct,
+                m_wage_f, m_wage_m, m_wage_avg, m_wage_dif, m_ct, m_per_ct,
+                f_wage_m, f_wage_f, f_wage_avg, f_wage_dif, f_ct, f_per_ct,
                 f_m_ratio_f, f_m_ratio_m, f_m_ratio_avg, f_m_ratio_dif]
 
             sex_sep.append(m_summary)
@@ -131,8 +135,8 @@ def score_ratio(grouped_df, var):
     sex_sep = pd.DataFrame(sex_sep, columns = ['Variable', 'Category', 'Wage_m', 'Wage_f',
                                                'Wage_Avg', 'Wage_Diff', 'Sex', 'Count'])                                                
     sex_full = pd.DataFrame(sex_full, columns = ['Variable', 'Category', 'Total_Count', 
-                                                 'M_Wage_f', 'M_Wage_m', 'M_Wage_Avg', 'M_Wage_Diff', 'M_Count',
-                                                 'F_Wage_m', 'F_Wage_f', 'F_Wage_Avg', 'F_Wage_Diff', 'F_Count',
+                                                 'M_Wage_f', 'M_Wage_m', 'M_Wage_Avg', 'M_Wage_Diff', 'M_Count', 'M_Pct_Ct'
+                                                 'F_Wage_m', 'F_Wage_f', 'F_Wage_Avg', 'F_Wage_Diff', 'F_Count', 'F_Pct_Ct'
                                                  'F_M_Ratio_f', 'F_M_Ratio_m', 'F_M_Ratio_Avg', 'F_M_Ratio_Diff'])
     return (sex_sep, sex_full, cat_full)
 
