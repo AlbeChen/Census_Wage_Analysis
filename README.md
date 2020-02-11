@@ -3,6 +3,24 @@
 
 **Language:** Python &emsp;&emsp;&emsp;**Libraries:** pandas, sklearn, seaborn, numpy, glob, time
 
+$$
+\begin{align*}
+R_{ComparevsBase} =
+\sum \frac{W_{Compared Subset}}{W_{Base Subset}} \times 
+\frac{C_{Base Subset}}{C_{Base Total}}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+R_{FM Average} =
+(\sum \frac{W_{Female Subset}}{W_{Male Subset}} \times 
+\frac{C_{Male Subset}}{C_{Male Total}} +
+\sum \frac{W_{Female Subset}}{W_{Male Subset}} \times 
+\frac{C_{Female Subset}}{C_{Female Total}}) / 2
+\end{align*}
+$$
+
 The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets contain information on anonymous individuals in the US that looks to mimic the wide berth of diversity in the country. This information includes family history, income from various sources, background, and more. This individual’s chosen to record responses in this survey were statistically selected to mimic the US and are equivalent to about one percent of the US's population in each year's datafile. Data from 2008 to 2018 was retrieved to compare any year by year changes.
 
 The goals of this study is to **(1)** output a single score that most accurately represents the wage gap between genders while accounting for a person's age, education, industry, region, and race, **(2)** create a model to predict a person's wage given the same parameters while also being able to visualize it given user input, **(3)** manage large datasets efficiently create workflows and custom functions to accommodate.
