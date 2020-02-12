@@ -135,8 +135,8 @@ def score_ratio(grouped_df, var):
     sex_sep = pd.DataFrame(sex_sep, columns = ['Variable', 'Category', 'Wage_m', 'Wage_f',
                                                'Wage_Avg', 'Wage_Diff', 'Sex', 'Count'])                                                
     sex_full = pd.DataFrame(sex_full, columns = ['Variable', 'Category', 'Total_Count', 
-                                                 'M_Wage_f', 'M_Wage_m', 'M_Wage_Avg', 'M_Wage_Diff', 'M_Count', 'M_Pct_Ct'
-                                                 'F_Wage_m', 'F_Wage_f', 'F_Wage_Avg', 'F_Wage_Diff', 'F_Count', 'F_Pct_Ct'
+                                                 'M_Wage_f', 'M_Wage_m', 'M_Wage_Avg', 'M_Wage_Diff', 'M_Count', 'M_Pct_Ct',
+                                                 'F_Wage_m', 'F_Wage_f', 'F_Wage_Avg', 'F_Wage_Diff', 'F_Count', 'F_Pct_Ct',
                                                  'F_M_Ratio_f', 'F_M_Ratio_m', 'F_M_Ratio_Avg', 'F_M_Ratio_Diff'])
     return (sex_sep, sex_full, cat_full)
 

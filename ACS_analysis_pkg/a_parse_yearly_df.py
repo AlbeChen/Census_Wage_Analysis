@@ -8,7 +8,7 @@ def parse_group(start_year, end_year):
     for year in years:
         useful_cols = ['WAGP', 'SEX', 'AGEP', 'RAC1P',
                     'SCHL', 'WKW', 'WKHP', 'OCCP', 'POWSP', 'ST', 'HISP']
-        path = ('data/%s' % year)
+        path = ('data_raw/%s' % year)
         PUS_split = pd.concat([pd.read_csv(f, usecols=useful_cols)
                             for f in glob.glob(path + "/*.csv")], ignore_index=True)
         PUS_start = PUS_start.append(PUS_split)
@@ -19,7 +19,7 @@ def parse_single(year):
     PUS_start = pd.DataFrame()
     useful_cols = ['WAGP', 'SEX', 'AGEP', 'RAC1P',
                 'SCHL', 'WKW', 'WKHP', 'OCCP', 'POWSP', 'ST', 'HISP']
-    path = ('data/%s' % year)
+    path = ('data_raw/%s' % year)
     PUS_start = pd.concat([pd.read_csv(f, usecols=useful_cols)
                         for f in glob.glob(path + "/*.csv")], ignore_index=True)
     return PUS_start
@@ -33,7 +33,7 @@ def parse_skip_year(start_year, end_year):
     for year in years:
         useful_cols = ['WAGP', 'SEX', 'AGEP', 'RAC1P',
                     'SCHL', 'WKW', 'WKHP', 'OCCP', 'POWSP', 'ST', 'HISP']
-        path = ('data/%s' % year)
+        path = ('data_raw/%s' % year)
         PUS_split = pd.concat([pd.read_csv(f, usecols=useful_cols)
                             for f in glob.glob(path + "/*.csv")], ignore_index=True)
         PUS_start = PUS_start.append(PUS_split)
@@ -41,7 +41,7 @@ def parse_skip_year(start_year, end_year):
 
 
 def shorten_raw_df(year):
-    path = ('data/%s' %year)
+    path = ('data_raw/%s' %year)
     useful_cols = ['WAGP', 'SEX', 'AGEP', 'RAC1P',
         'SCHL', 'WKW', 'WKHP', 'OCCP', 'POWSP', 'ST', 'HISP']
     raw_df = pd.concat([pd.read_csv(f, usecols = useful_cols) \
