@@ -1,9 +1,8 @@
 ## American Community Survey (ACS) Public Use Microdata Sample (PUMS) Wage Analysis
-**Quantifying the gender wage gap while normalizing for age, education, industry, and race** <br/>
+**Quantifying the wage gap while normalizing for sex, age, education, industry, and race**
 
-**Language:** Python &emsp;&emsp;&emsp;**Libraries:** pandas, sklearn, seaborn, numpy
-
-**Tools:** Tableau
+**Language:** Python (pandas, sklearn, matplotlib, seaborn, numpy) <br/>
+**Software:** Tableau, Jupyter Notebook
 
 
 The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets contain information on anonymous individuals in the US that looks to mimic the wide berth of diversity in the country. Each year's dataset, is equivalent to about one percent of the US's population and contains information on family history, incomes, background, and more.
@@ -38,3 +37,7 @@ The objective of this study is to quantify the wage difference between various v
    
 ## Visual Summary (Figures)
 ![alt text](/images/Wage_Ratio_Ordered.png "Wage_Ratio_Ordered")
+##### Tableau Dashboards (Pivots across different variables and categories)
+![alt text](/images/ACS_Tableau_Visualization_Summary.png "ACS_Tableau_Visualization_Summary")
+
+![alt text](/images/heatmap_lineplot_JOB.png "heatmap_lineplot_JOB")
