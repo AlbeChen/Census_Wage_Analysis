@@ -19,16 +19,18 @@ def plot_ratio_ordered(sex_full):
     plt.ylim(0,1)
     plt.ylabel('Gendered Wage Ratio (F/M)')
     plt.title('Wage Ratio vs. Categories')
+    plt.savefig('images/Wage_Ratio_Ordered.png', bbox_inches = 'tight', pad_inches = 0.2, dpi=1000)
 
 
 def plot_sex_n_cat(yearly_sex_sep):
     sns.catplot(y='Wage_Avg', x='Sex', hue='Category', col='Variable',
         aspect=0.3, height=6, data=yearly_sex_sep)
+    plt.savefig('images/Wage_Category_Plot.png', bbox_inches = 'tight', pad_inches = 0.2, dpi=1000)
 
 
 
 def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
-    fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(18, 5))
+    fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(16, 5))
 
     color_dict = {'SEX': 'coolwarm', 'JOB': 'RdPu',
                     'AGE': 'YlGn', 'RACE': 'Oranges',
@@ -81,14 +83,16 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
     ax[1].set(xlim=(2008, 2018), ylim=(0.70, 0.93))
     ax[1].get_legend().remove()
     ax[1].set_ylabel('Wage Ratio (F/M)')
-    ax[1].title.set_text('Wage F / Wage M for each %s group (2008-2018)' % var)
+    ax[1].title.set_text('Wage F / Wage M per %s (2008-2018)' % var)
 
     sns.lineplot(x='Year', y='F_Pct_Ct', hue='Category', data=ratio_yearly, ax=ax[2])
     ax[2].set(xlim=(2008, 2018))
     ax[2].legend(bbox_to_anchor=(1, 1))
     ax[2].set_ylabel('Percent Female')
-    ax[2].title.set_text('Percent Female for each %s group (2008-2018)' % var)
-
+    ax[2].title.set_text('Percent Female per %s (2008-2018)' % var)
+    
+    path = ('images/heatmap_lineplot_%s.png' % var)
+    fig.savefig(path, bbox_inches = 'tight', pad_inches = 0.2, dpi=1000)
 
 def plot_heatmap_basecat(cat_full, var):
     color_dict = {'SEX': 'coolwarm', 'JOB': 'RdPu',
