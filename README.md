@@ -1,4 +1,4 @@
-## American Community Survey (ACS) Public Use Microdata Sample (PUMS) Wage Analysis
+## American Community Survey (ACS) Wage Analysis
 **Quantifying the wage gap while normalizing for sex, age, education, industry, and race**
 
 **Language:** Python (pandas, sklearn, matplotlib, seaborn, numpy) <br/>
@@ -36,8 +36,8 @@ The objective of this study is to quantify the wage difference between various v
     
    
 ## Visual Summary (Figures)
-![alt text](/images/Wage_Ratio_Ordered.png "Wage_Ratio_Ordered")
-##### Tableau Dashboards (Pivots across different variables and categories)
-![alt text](/images/ACS_Tableau_Visualization_Summary.png "ACS_Tableau_Visualization_Summary")
-
+#### Tableau Dashboards: pivots across different variables and years
+![alt text](/images/ACS_Tableau_Visualization.jpg "ACS_Tableau_Visualization")
+#### Python Seaborn Plots: functions to visualize given a specifed variable
 ![alt text](/images/heatmap_lineplot_JOB.png "heatmap_lineplot_JOB")
+![alt text](/images/heatmap_lineplot_EDU.png "heatmap_lineplot_EDU")
