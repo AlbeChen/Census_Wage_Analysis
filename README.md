@@ -10,7 +10,7 @@ The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets 
 The objective of this study is to quantify the wage difference between various variables (Age, Education, Job Industry, Race, and Sex) and categories within each (ex: Education categories would include - BS, No Highschool, etc..) by normalizing each subset of category and variable combinations. This analysis was completed in python and supported with visualization in Tableau. For the final summary, view the ACS_Notebook_Final_Analysis.ipynb and ACS_Tableau_Visualization.pdf.
 
     ** Main Files **
-    - /ACS_analysis_pkg #analysis functions from preprocessing to final output
+    - /ACS_analysis_pkg    #package for full analysis
        |--__init__.py
        |--a_parse_yearly_df.py
        |--b_preprocessing_pipeline.py
@@ -18,20 +18,20 @@ The objective of this study is to quantify the wage difference between various v
        |--d_df_transform.py
        |--e_output_analysis.py
        |--f_visualization.py
-    - ACS_Notebook_Final_Analysis.ipynb #summary of results
-    - ACS_Tableau_Visualization.pdf/twb #pivotable visualization
+    - ACS_Notebook_Final_Analysis.ipynb   #summary of results
+    - ACS_Tableau_Visualization.pdf/twb   #pivotable visualization
     
     ** Support Files **
-    - /data_raw #download raw data and add into folder as needed
+    - /data_raw   #download raw data and add into folder as needed
        |--2018
        |------
        |--2008
-    - /data_output #output data from final analysis notebook
-    - /images #images saved from final analysis
-    - /initial_analysis #notebook and images of intial data exploration
-    - /ACS_technical_documents #documentation on dataset
+    - /data_output   #output data from final analysis notebook
+    - /images  #images saved from final analysis
+    - /initial_analysis    #notebook and images of intial data exploration
+    - /ACS_technical_documents   #documentation on dataset
    
-## Visual Summary (Figures)
+## Visual Summary
 #### Tableau Dashboards: pivots across different variables and years
 ![alt text](/images/ACS_Tableau_Visualization.jpg "ACS_Tableau_Visualization")
 #### Python Seaborn Plots: functions to visualize given a specifed variable
