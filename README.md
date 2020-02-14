@@ -1,13 +1,13 @@
 ## American Community Survey (ACS) Wage Analysis
-**Quantifying the wage gap while normalizing for sex, age, education, industry, and race**
+**Quantifying wage gap while normalizing for sex, age, education, industry, and race**
 
 **Language:** Python (pandas, sklearn, matplotlib, seaborn, numpy) <br/>
-**Software:** Tableau, Jupyter Notebook
+**Software:** Tableau
 
 
-The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets contain information on anonymous individuals in the US that looks to mimic the wide berth of diversity in the country. Each year's dataset, is equivalent to about one percent of the US's population and contains information on family history, incomes, background, and more.
+The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets contain information on anonymous individuals in the US that looks to mimic the wide berth of diversity in the country. Each year’s dataset is equivalent to about one percent of the US's population and contains information on family history, incomes, background, and more. To run the notebook, raw data files from the [US Census Website](https://www.census.gov/programs-surveys/acs/technical-documentation/pums/documentation.html) must be downloaded for the relevant years.
 
-The objective of this study is to quantify the wage difference between various variables (Age, Education, Job Industry, Race, and Sex) and catagoires within each (ex: Education catagories would include - BS, No Highschool, ect.) by normalizing each subset of catagory and variable combinations. To achieve this the following was preformed:
+The objective of this study is to quantify the wage difference between various variables (Age, Education, Job Industry, Race, and Sex) and categories within each (ex: Education categories would include - BS, No Highschool, etc..) by normalizing each subset of category and variable combinations. This analysis was completed in python and supported with visualization in Tableau. For the final summary, view the ACS_Notebook_Final_Analysis.ipynb and ACS_Tableau_Visualization.pdf.
 
     ** Main Files **
     - /ACS_analysis_pkg #analysis functions from preprocessing to final output
@@ -30,10 +30,6 @@ The objective of this study is to quantify the wage difference between various v
     - /images #images saved from final analysis
     - /initial_analysis #notebook and images of intial data exploration
     - /ACS_technical_documents #documentation on dataset
-    
-
-
-    
    
 ## Visual Summary (Figures)
 #### Tableau Dashboards: pivots across different variables and years
@@ -41,3 +37,4 @@ The objective of this study is to quantify the wage difference between various v
 #### Python Seaborn Plots: functions to visualize given a specifed variable
 ![alt text](/images/heatmap_lineplot_JOB.png "heatmap_lineplot_JOB")
 ![alt text](/images/heatmap_lineplot_EDU.png "heatmap_lineplot_EDU")
+![alt text](/images/heatmap_lineplot_AGE.png "heatmap_lineplot_AGE")
