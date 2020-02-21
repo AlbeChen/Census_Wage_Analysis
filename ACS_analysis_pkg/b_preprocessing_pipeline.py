@@ -2,24 +2,24 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
 
-
+# filter df for full timers
 def full_time_detect(df):
-    df = df.loc[df.WKW < 4].copy()
-    df = df.loc[df.WKHP >= 35].copy()
-    df = df.loc[df.AGEP >= 18].copy()
-    df = df.loc[df.AGEP <= 70].copy()
+    df = df.loc[df.WKW < 4].copy() # more than 40 weeks a year is considered full time
+    df = df.loc[df.WKHP >= 35].copy() # >=35 hr a week is considered full time
+    df = df.loc[df.AGEP >= 18].copy() # lower limit age
+    df = df.loc[df.AGEP <= 70].copy() # upper limit age 
     return df
 
-
+# determine who is considered an outlier
 def outlier_wage(df):
     #wage_iqr = np.percentile(df.WAGP, 75) - np.percentile(df.WAGP, 25)
     #wage_upper = np.percentile(df.WAGP, 75) + wage_iqr * 3
-    df = df.loc[df.WAGP >= 12500].copy()
-    df = df.loc[df.WAGP <= 400000].copy()
+    df = df.loc[df.WAGP >= 12500].copy() # used because 12500 is poverty line
+    df = df.loc[df.WAGP <= 400000].copy() # used as ~1% wage US population
     df['WAGP'] = np.log(df['WAGP'])
     return df
 
-
+# mapping values according to technical document for data directory
 def mapping_features(df):
     # Sex
     df['SEX'] = df['SEX'].map(lambda y: 'Male' if y == 1
@@ -68,14 +68,14 @@ def mapping_features(df):
                                  else 'na')
     return df
 
-
+# removing columns after mapping
 def remove_col(df):
     remove_cols = ['SCHL', 'WKHP', 'WKW', 'HISP',
                    'OCCP', 'POWSP', 'RAC1P', 'AGEP', 'ST']
     df = df.drop(remove_cols, axis=1)
     return df
 
-
+# one hot encoding all columns after mapping
 def OHE_no_WAGP(df):
     OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
     cat_col = [i for i in df.columns.tolist() if i not in ['WAGP']]
@@ -90,7 +90,7 @@ def OHE_no_WAGP(df):
     df.columns = OHE_col
     return df
 
-
+# one hot encoding but wagp
 def OHE_cat(df):
     OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
     cat_col = [i for i in df.columns.tolist() if i not in ['WAGP']]
@@ -106,7 +106,7 @@ def OHE_cat(df):
     df.columns = OHE_col
     return df
 
-
+# summary of preprocessing ^^^ all functions above
 def preprocess_modeling(df):
     df = (df
           .pipe(full_time_detect)
@@ -117,7 +117,7 @@ def preprocess_modeling(df):
           )
     return df
 
-
+# summary of preprocessing BUT no OHE so maintain catagorical data
 def preprocess_catagories(df):
     df = (df
           .pipe(full_time_detect)
