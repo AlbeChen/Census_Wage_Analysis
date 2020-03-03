@@ -32,9 +32,9 @@ The objective of this study is to quantify the wage difference between various v
     - /ACS_technical_documents   #documentation on dataset
    
 ## Visual Summary
-#### Tableau Dashboards: pivots across different variables and years
-![alt text](/images/ACS_Tableau_Visualization.jpg "ACS_Tableau_Visualization")
 #### Python Seaborn Plots: functions to visualize given a specifed variable
 ![alt text](/images/heatmap_lineplot_JOB.png "heatmap_lineplot_JOB")
 ![alt text](/images/heatmap_lineplot_EDU.png "heatmap_lineplot_EDU")
 ![alt text](/images/heatmap_lineplot_AGE.png "heatmap_lineplot_AGE")
+#### Tableau Dashboards: pivots across different variables and years
+![alt text](/images/ACS_tablau_demo.gif "ACS_Tableau_Visualization")
