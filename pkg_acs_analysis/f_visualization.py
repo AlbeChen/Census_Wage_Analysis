@@ -139,7 +139,7 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
         fmt=".1f",
         ax=ax[0],
     )
-    ax[0].title.set_text("Heatmap of %s" % var)
+    ax[0].title.set_text("Wage Difference of Categories in %s" % var)
 
     sns.set_style("whitegrid")
 
@@ -156,7 +156,10 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
 
     # PLOT 3: lineplot to shower yearly change %F in the work force for each cat in var
     sns.lineplot(x="Year", y="F_Pct_Ct", hue="Category", data=ratio_yearly, ax=ax[2])
-    ax[2].set(xlim=(2008, 2018))
+    if var == "JOB":
+        ax[2].set(xlim=(2008, 2018))
+    else:
+        ax[2].set(xlim=(2008, 2018), ylim=(0.25, 0.55))
     ax[2].legend(bbox_to_anchor=(1, 1))
     ax[2].set_ylabel("Percent Female")
     ax[2].title.set_text("Percent Female per %s (2008-2018)" % var)
