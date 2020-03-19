@@ -35,7 +35,7 @@ def plot_ratio_ordered(sex_full):
     plt.ylabel("Gendered Wage Ratio (F/M)")
     plt.title("Wage Ratio vs. Categories")
     plt.savefig(
-        "images/Wage_Ratio_Ordered.png", bbox_inches="tight", pad_inches=0.2, dpi=1000
+        "images/Wage_Ratio_Ordered.png", bbox_inches="tight", pad_inches=0.2, dpi=500
     )
 
 
@@ -51,7 +51,7 @@ def plot_sex_n_cat(yearly_sex_sep):
         data=yearly_sex_sep,
     )
     plt.savefig(
-        "images/Wage_Category_Plot.png", bbox_inches="tight", pad_inches=0.2, dpi=1000
+        "images/Wage_Category_Plot.png", bbox_inches="tight", pad_inches=0.2, dpi=500
     )
 
 
@@ -165,7 +165,7 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
     ax[2].title.set_text("Percent Female per %s (2008-2018)" % var)
 
     path = "images/heatmap_lineplot_%s.png" % var
-    fig.savefig(path, bbox_inches="tight", pad_inches=0.2, dpi=1000)
+    fig.savefig(path, bbox_inches="tight", pad_inches=0.2, dpi=500)
 
 
 # basic heatmap plotting for single var
