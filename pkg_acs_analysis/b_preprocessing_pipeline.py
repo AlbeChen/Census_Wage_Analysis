@@ -109,6 +109,13 @@ def mapping_features(df):
     return df
 
 
+# joining states / regions / divison
+def join_states(df):
+    state = pd.read_csv("data_raw/states.csv")
+    df = pd.merge(df, state[["ST", "DIV"]], how="left", on="ST")
+    return df
+
+
 # removing columns after mapping
 def remove_col(df):
     remove_cols = [
@@ -165,6 +172,7 @@ def preprocess_modeling(df):
         df.pipe(full_time_detect)
         .pipe(outlier_wage)
         .pipe(mapping_features)
+        .pipe(join_states)
         .pipe(remove_col)
         .pipe(OHE_cat)
     )
@@ -177,6 +185,7 @@ def preprocess_catagories(df):
         df.pipe(full_time_detect)
         .pipe(outlier_wage)
         .pipe(mapping_features)
+        .pipe(join_states)
         .pipe(remove_col)
     )
     return df

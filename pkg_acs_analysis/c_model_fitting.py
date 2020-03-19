@@ -26,13 +26,8 @@ def rfr_fit(modeling_df):
     )
 
     # checking to see if df is too small so min 1 mil points are used
-    if len(x_train.index) <= 1000000:
-        x_train = x_train
-    else:
+    if len(x_train.index) > 1000000:
         x_train = x_train.sample(n=1000000, random_state=1)
-    if len(y_train.index) <= 1000000:
-        y_train = y_train
-    else:
         y_train = y_train.sample(n=1000000, random_state=1)
 
     # rfr hyper parameters simple split scoring with MAE

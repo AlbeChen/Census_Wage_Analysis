@@ -287,7 +287,7 @@ def score_ratio(grouped_df, var):
 
 # analysis for processsed df - all variables
 def multibase_analysis(grouped_df):
-    var_list = ["SEX", "EDU", "JOB", "RACE", "AGE"]
+    var_list = ["SEX", "EDU", "JOB", "RACE", "AGE", "DIV"]
     sex_sep = pd.DataFrame()
     sex_full = pd.DataFrame()
     cat_full = pd.DataFrame()

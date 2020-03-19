@@ -6,7 +6,14 @@ import numpy as np
 
 # plotting wage ratio for each catagory in each variable and orginizing by ratio
 def plot_ratio_ordered(sex_full):
-    dict_color = {"SEX": "C4", "JOB": "C3", "AGE": "C2", "RACE": "C1", "EDU": "C0"}
+    dict_color = {
+        "SEX": "C4",
+        "JOB": "C3",
+        "AGE": "C2",
+        "RACE": "C1",
+        "EDU": "C0",
+        "DIV": "C5",
+    }
     sns.set_style("whitegrid")
     sex_full_sort = sex_full.groupby(["Category"]).agg("mean").reset_index()
     sex_full_sort = sex_full_sort.sort_values(by=["F_M_Ratio_Avg"])
@@ -59,6 +66,7 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
         "AGE": "YlGn",
         "RACE": "Oranges",
         "EDU": "Blues",
+        "DIV": "Purples",
     }
     color = color_dict[var]
 
@@ -91,6 +99,21 @@ def plot_heatmap_lineplot(cat_full, yearly_sex_full, var):
             "Production": "PRD",
             "Transport": "TRP",
             "Military": "MTY",
+        }
+        heatmap_group["Category"] = heatmap_group["Category"].map(job_dict)
+        heatmap_group["Base_Category"] = heatmap_group["Base_Category"].map(job_dict)
+
+    elif var == "DIV":
+        job_dict = {
+            "East North Central": "NE-C",
+            "East South Central": "SE-C",
+            "Middle Atlantic": "M-Atl",
+            "Mountain": "MTN",
+            "New England": "NE",
+            "Pacific": "PCF",
+            "South Atlantic": "S-Alt",
+            "West North Central": "NW-C",
+            "West South Central": "SW-C",
         }
         heatmap_group["Category"] = heatmap_group["Category"].map(job_dict)
         heatmap_group["Base_Category"] = heatmap_group["Base_Category"].map(job_dict)
