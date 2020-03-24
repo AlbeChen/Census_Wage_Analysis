@@ -2,13 +2,18 @@
 **Quantifying wage gap while normalizing for sex, age, education, industry, and race**
 
 **Language:** Python (pandas, sklearn, matplotlib, seaborn, numpy) <br/>
-**Software:** Tableau
+**Software:** Tableau, Flourish
 
 
 The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets contain information on anonymous individuals in the US that looks to mimic the wide berth of diversity in the country. Each year’s dataset is equivalent to about one percent of the US's population and contains information on family history, incomes, background, and more. To run the notebook, raw data files from the [US Census Website](https://www.census.gov/programs-surveys/acs/technical-documentation/pums/documentation.html) must be downloaded for the relevant years.
 
-The objective of this study is to quantify the wage difference between various variables (Age, Education, Job Industry, Race, and Sex) and categories within each (ex: Education categories would include - BS, No Highschool, etc.) by normalizing each subset of category and variable combinations. This analysis was completed in python and supported with visualization in Tableau. For the final summary, view the [ACS_Notebook_Initial_Exploration.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Initial_Exploration.ipynb), and [ACS_Notebook_Final_Analysis.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Final_Analysis.ipynb) for notebook summaries and [ACS_Tableau_Visualization.twb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Tableau_Visualization.twb) for the Tableau visualization.
+The objective of this study is to quantify the wage difference between various variables (Age, Education, Job Industry, Race, and Sex) and categories within each (ex: Education categories would include - BS, No Highschool, etc.) by normalizing each subset of category and variable combinations. This analysis was completed in python and supported with visualization in Tableau.
+- **Website Article:** [Quantifying Wage Indicators in the United States](https://sites.google.com/view/quantifying-wage-indicators/home)
+- **Final Summary Notebook:**[ACS_Notebook_Final_Analysis.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Final_Analysis.ipynb)
 
+- Initial Exploration Notebook: [ACS_Notebook_Initial_Exploration.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Initial_Exploration.ipynb)
+- Tableau Dashboard: [ACS_Tableau_Visualization.twb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Tableau_Visualization.twb)
+```
     ** Main Files **
     - /ACS_analysis_pkg    #package for full analysis
        |--__init__.py
@@ -24,13 +29,11 @@ The objective of this study is to quantify the wage difference between various v
     
     ** Support Files **
     - /data_raw   #download raw data and add into folder as needed
-       |--2018
-       |------
-       |--2008
     - /data_output   #output data from final analysis notebook
     - /images  #images saved from final analysis
     - /ACS_technical_documents   #documentation on dataset
-   
+```
+
 ## Visual Summary
 #### Tableau Dashboards: pivots across different variables and years
 ![alt text](/images/ACS_tablau_demo.gif "ACS_Tableau_Visualization")
