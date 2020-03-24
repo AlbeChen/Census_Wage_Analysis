@@ -9,7 +9,7 @@ The American Community Survey (ACS) Public Use Microdata Sample (PUMS) datasets 
 
 The objective of this study is to quantify the wage difference between various variables (Age, Education, Job Industry, Race, and Sex) and categories within each (ex: Education categories would include - BS, No Highschool, etc.) by normalizing each subset of category and variable combinations. This analysis was completed in python and supported with visualization in Tableau.
 - **Website Article:** [Quantifying Wage Indicators in the United States](https://sites.google.com/view/quantifying-wage-indicators/home)
-- **Final Summary Notebook:**[ACS_Notebook_Final_Analysis.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Final_Analysis.ipynb)
+- **Final Summary Notebook:** [ACS_Notebook_Final_Analysis.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Final_Analysis.ipynb)
 
 - Initial Exploration Notebook: [ACS_Notebook_Initial_Exploration.ipynb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Notebook_Initial_Exploration.ipynb)
 - Tableau Dashboard: [ACS_Tableau_Visualization.twb](https://github.com/albechen/acs-quantify-wage-gap/blob/master/ACS_Tableau_Visualization.twb)
